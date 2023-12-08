@@ -1,0 +1,90 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" [ngClass]="{hidden: !(isSmallScreen$ | async)}" fixedInViewport
+               [attr.role]="(isSmallScreen$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isSmallScreen$ | async) ? 'over' : 'side'"
+               [opened]="(isSmallScreen$ | async) === false">
+    <mat-toolbar>GAMES</mat-toolbar>
+    <mat-nav-list>
+      <div class="formContainer">
+        <form class="form" [formGroup]="form" (ngSubmit)="submitInput()">
+          <mat-form-field appearance="fill">
+            <input matInput name="newGameName" placeholder="game name..." formControlName="newGameName">
+            <mat-error *ngIf="newGameNameControl?.hasError('required')">Game name is required</mat-error>
+            <mat-error *ngIf="newGameNameControl?.hasError('minlength')">Game name must be at least 3 characters</mat-error>
+            <mat-error *ngIf="newGameNameControl?.hasError('maxlength')">Game name cannot be longer than 20 characters</mat-error>
+          </mat-form-field>
+          <button type="submit">
+            <span class="material-symbols-outlined">add_circle</span>
+          </button>
+        </form>
+      </div>
+      <div class="errorMessage" *ngIf="errorMessage != '' "> {{errorMessage}}</div>
+      <ng-container *ngFor="let game of games">
+        <a mat-list-item (click)="openGame(game.id)">
+          <div class="game-item">
+            {{game.gameName}}
+            <mat-icon (click)="deleteGame(game.id)">close</mat-icon>
+          </div>
+        </a>
+      </ng-container>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <header class="container-fluid no-gutters">
+        <div class="row no-gutters justify-content-between">
+          <div class="col-auto logo" routerLink="">
+            <ng-container *ngIf="isConnected">
+              <button
+                type="button"
+                aria-label="Toggle sidenav"
+                mat-icon-button
+                (click)="drawer.toggle()"
+                *ngIf="isSmallScreen$ | async">
+                <mat-icon aria-label="Side nav toggle icon">casino</mat-icon>
+              </button>
+            </ng-container>
+          </div>
+          <div class="col-auto ml-auto connection">
+            <div class="login-container" *ngIf="!isConnected">
+              <div class="buttons">
+                <p>Access your account :</p>
+                <button mat-button class="login" (click)="login()">
+                  <mat-icon class="icon-login">login</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="menu" *ngIf="isConnected">
+              <button mat-button [matMenuTriggerFor]="menu" class="profile-button">
+                <ng-container *ngIf="(isSmallScreen$ | async); else largeScreen">
+                  {{ (userLogged.firstName[0] | uppercase) + '. ' + (userLogged.lastName[0] | uppercase) + (userLogged.lastName | lowercase | slice:1) }}
+                  <button mat-icon-button class="profile-icon">
+                    <img *ngIf="userLogged.attributes.GoogleProfilePicture" src="{{userLogged.attributes.GoogleProfilePicture}}" alt="Profile Image" />
+                    <img *ngIf="!userLogged.attributes.GoogleProfilePicture" src="assets/uknownPicture.png" alt="Profile Image">
+                  </button>
+                </ng-container>
+                <ng-template #largeScreen>
+                  <div class="profile-large">
+                    {{ (userLogged.firstName[0] | uppercase) + '. ' + (userLogged.lastName[0] | uppercase) + (userLogged.lastName | lowercase | slice:1) }}
+                    <button mat-icon-button class="profile-icon">
+                      <img *ngIf="userLogged.attributes.GoogleProfilePicture" src="{{userLogged.attributes.GoogleProfilePicture}}" alt="Profile Image" />
+                      <img *ngIf="!userLogged.attributes.GoogleProfilePicture" src="assets/uknownPicture.png" alt="Profile Image">
+                    </button>
+                  </div>
+                </ng-template>
+              </button>
+
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item  class="option-panel">
+                  Profile
+                </button>
+                <button mat-menu-item (click)="logout()"  class="option-panel">Logout</button>
+              </mat-menu>
+            </div>
+          </div>
+        </div>
+      </header>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

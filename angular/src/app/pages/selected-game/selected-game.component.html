@@ -1,0 +1,78 @@
+<div class="selectedGameContainer" *ngIf="selectedGame">
+  <h1>{{selectedGame.gameName | uppercase}}</h1>
+  <div>
+    <form *ngIf="playerForm" class="form" (ngSubmit)="submitInput()" [formGroup]="playerForm">
+      <mat-form-field class="inputField">
+        <input class="input" matInput name="newPlayerName" placeholder="player name..." formControlName="newPlayerName">
+        <mat-error *ngIf="playerForm.get('newPlayerName')?.hasError('minlength') || playerForm.get('newPlayerName')?.hasError('maxlength')">
+          Player name must be between 2 and 15 characters.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="email" class="input" matInput name="newPlayerEmail" placeholder="player email..." formControlName="newPlayerEmail">
+        <mat-error *ngIf="playerForm.get('newPlayerEmail')?.hasError('email')">
+          Enter a valid email address.
+        </mat-error>
+      </mat-form-field>
+      <button type="submit" [disabled]="playerForm.invalid">
+        <span class="material-symbols-outlined">person_add</span>
+      </button>
+    </form>
+    <div class="errorMessage" *ngIf="errorMessage != '' ">{{errorMessage}}</div>
+  </div>
+  <div class="PlayersTable" *ngIf="filteredDataSource.length > 0">
+    <table mat-table [dataSource]="filteredDataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="playerName">
+        <th mat-header-cell *matHeaderCellDef> NAME </th>
+        <td mat-cell *matCellDef="let element" (click)="selectPlayer(element)"> {{element.playerName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="drawn">
+        <th mat-header-cell *matHeaderCellDef> AVAILABLE </th>
+        <td mat-cell *matCellDef="let element"> {{ element.drawn ? 'false' : 'true' }} </td>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> DELETE </th>
+        <td mat-cell *matCellDef="let element">
+          <button>
+            <mat-icon (click)="delete(element.id)">person_remove</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <div class="actionContainer" *ngIf="filteredDataSource.length > 1">
+    <div>
+      <h2>Next round</h2>
+    </div>
+    <div class="icon-container">
+        <div class="spinner" id="spinner" [class.play]="playAnimation" (click)="action()">
+          <div class="content-wrapper" *ngIf="chosenPlayer else unknownTelplate">
+            {{ chosenPlayer.playerName }}
+          </div>
+          <ng-template #unknownTelplate>
+            <mat-icon class="icon">psychology_alt</mat-icon>
+          </ng-template>
+        </div>
+    </div>
+  </div>
+
+  <div class="listDrawsContainer" *ngIf="draws.length > 0">
+    <table mat-table [dataSource]="draws" class="mat-elevation-z8">
+      <ng-container matColumnDef="playerName">
+        <th mat-header-cell *matHeaderCellDef> NAME </th>
+        <td mat-cell *matCellDef="let element"> {{element.playerName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> CREATED AT </th>
+        <td mat-cell *matCellDef="let element">{{ element.createdAt | date:'dd-MM-yyyy HH:mm' }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsDraws"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsDraws;"></tr>
+    </table>
+  </div>
+</div>
+

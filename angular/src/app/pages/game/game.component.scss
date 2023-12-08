@@ -1,0 +1,19 @@
+.gameComponentContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+   .newPlayer-container{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+     margin-top: 1rem;
+   }
+  .PlayersTable{
+    width: 100%;
+    margin-top: 1rem;
+  }
+}

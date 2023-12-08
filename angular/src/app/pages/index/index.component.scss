@@ -1,0 +1,36 @@
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+}
+.hypnotic {
+  width: 200px;
+  height: 250px;
+  display: grid;
+  background: linear-gradient(white 0 0) top   /100% 5.1px,
+  linear-gradient(white 0 0) bottom/100% 5.1px,
+  linear-gradient(to bottom right, #0000 calc(50% - 5.2px),white calc(50% - 5.1px),#0000 50%) top/100% calc(100% + 2.2px),
+  linear-gradient(to bottom left , #0000 calc(50% - 5.2px),white calc(50% - 5.1px),#0000 50%) top/100% calc(100% + 2.2px);
+  background-repeat: no-repeat;
+  animation: hypnotic-zexws3 10s infinite linear;
+}
+
+.hypnotic::before,
+.hypnotic::after {
+  content: "";
+  grid-area: 1/1;
+  background: inherit;
+  border: inherit;
+  animation: inherit;
+}
+
+.hypnotic::after {
+  animation-duration: 8s;
+}
+
+@keyframes hypnotic-zexws3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}

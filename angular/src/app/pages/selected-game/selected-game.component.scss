@@ -1,0 +1,138 @@
+.selectedGameContainer{
+  padding: 1rem;
+  background-color: black;
+  h1{
+    text-align: center;
+    padding-bottom: 1rem;
+    margin: 0;
+  }
+  .form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    .input{
+      background-color: black;
+      color: white;
+      border: none;
+      border-bottom: 1px solid white;
+      font-size: 1rem;
+      text-align: center;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    button{
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 2rem;
+    }
+  }
+
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: black;
+    padding: 0.5rem;
+  }
+  ::ng-deep .mdc-text-field--filled{
+
+  }
+
+
+  .errorMessage{
+    color: red;
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .PlayersTable{
+      td, th{
+        text-align: center;
+        vertical-align: middle;
+      }
+    button{
+      background-color: transparent;
+      border: none;
+      color: white;
+    }
+  }
+}
+
+.actionContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  h2{
+    margin: 0;
+    padding: 1rem;
+  }
+  .icon-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  img{
+    width: 200px;
+    height: 200px;
+  }
+  h3{
+    margin: 0;
+  }
+}
+
+.listDrawsContainer{
+  td, th{
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+.mat-mdc-text-field-wrapper{
+background-color: black;
+}
+
+.content-wrapper {
+  text-align: center;
+
+}
+
+.icon{
+  color: white;
+  font-size: 7rem;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #3b8112;
+  transform-origin: center;
+
+}
+
+.spinner.play {
+  animation: spinner-8k6ao5lg 3s forwards;
+}
+
+@keyframes spinner-8k6ao5lg {
+  0% {
+    transform: perspective(288px) rotateY(0deg);
+  }
+
+  10% {
+    transform: perspective(288px) rotateY(-65deg);
+  }
+
+  90%, 100% {
+    transform: perspective(288px) rotateY(2880deg);
+  }
+}

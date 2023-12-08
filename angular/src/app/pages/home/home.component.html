@@ -1,0 +1,36 @@
+<div class="homeComponentContainer">
+  <div class="newGame-container">
+    <div>
+      <h2>Create a new game</h2>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Input</mat-label>
+        <input matInput [(ngModel)]="newGame">
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-raised-button (click)="submitInput()">Submit</button>
+    </div>
+  </div>
+
+  <div class="gamesTable">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="gameName">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element" (click)="selectGame(element)"> {{element.gameName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> Created at </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdAt | date:'dd-MM-yyyy HH:mm' }} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="selectedGame">
+    <app-game [selectedGame]="selectedGame" [user]="user"></app-game>
+  </div>
+</div>
+

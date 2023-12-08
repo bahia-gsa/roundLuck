@@ -1,0 +1,105 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.hidden {
+  display: none;
+}
+
+.sidenav .mat-toolbar {
+  background-color: green;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: green;
+
+}
+
+.mat-drawer-content {
+  background-color: black;
+}
+
+.formContainer{
+
+}
+
+.form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  padding-left: 0.5rem;
+  input{
+    width: 90%;
+  }
+  button{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+
+  }
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.connection{
+  padding: 0;
+  .buttons{
+    display: flex;
+    align-items: center;
+    p{
+      margin: 0;
+    }
+    button.login{
+      .icon-login{
+        color: #ffffff;
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+  }
+}
+
+.menu{
+  .profile-button{
+    .profile-icon{
+      img{
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.game-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  mat-icon{
+    color: red;
+  }
+  .icon-games{
+    color: white;
+  }
+}

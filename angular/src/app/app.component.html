@@ -1,0 +1,14 @@
+<ng-container *ngIf="isMobile; else messageTemplate">
+  <app-navbar>
+    <router-outlet></router-outlet>
+  </app-navbar>
+</ng-container>
+
+<ng-template #messageTemplate>
+  <div class="messageContainer">
+    <h1>We are sorry, this app is only accessible by mobile phones</h1>
+  </div>
+</ng-template>
+
+
+

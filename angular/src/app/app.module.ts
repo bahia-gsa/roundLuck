@@ -19,6 +19,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatTableModule} from "@angular/material/table";
 import { GameComponent } from './pages/game/game.component';
 import { SelectedGameComponent } from './pages/selected-game/selected-game.component';
+import { FormLoginComponent } from './components/form-login/form-login.component';
+import { FormRegisterComponent } from './components/form-register/form-register.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {CookieService} from 'ngx-cookie-service';
+
 
 
 @NgModule({
@@ -29,6 +34,8 @@ import { SelectedGameComponent } from './pages/selected-game/selected-game.compo
     IndexComponent,
     GameComponent,
     SelectedGameComponent,
+    FormLoginComponent,
+    FormRegisterComponent,
 
   ],
     imports: [
@@ -38,6 +45,7 @@ import { SelectedGameComponent } from './pages/selected-game/selected-game.compo
         BrowserAnimationsModule,
         MatToolbarModule,
         MatButtonModule,
+        MatDialogModule,
         MatSidenavModule,
         MatIconModule,
         MatListModule,
@@ -48,7 +56,7 @@ import { SelectedGameComponent } from './pages/selected-game/selected-game.compo
         MatTableModule,
         ReactiveFormsModule
     ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

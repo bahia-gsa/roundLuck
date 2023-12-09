@@ -49,7 +49,7 @@
             <div class="login-container" *ngIf="!isConnected">
               <div class="buttons">
                 <p>Access your account :</p>
-                <button mat-button class="login" (click)="login()">
+                <button mat-button class="login" (click)="openFormLogin()">
                   <mat-icon class="icon-login">login</mat-icon>
                 </button>
               </div>
@@ -57,18 +57,16 @@
             <div class="menu" *ngIf="isConnected">
               <button mat-button [matMenuTriggerFor]="menu" class="profile-button">
                 <ng-container *ngIf="(isSmallScreen$ | async); else largeScreen">
-                  {{ (userLogged.firstName[0] | uppercase) + '. ' + (userLogged.lastName[0] | uppercase) + (userLogged.lastName | lowercase | slice:1) }}
+                  {{user.name}}
                   <button mat-icon-button class="profile-icon">
-                    <img *ngIf="userLogged.attributes.GoogleProfilePicture" src="{{userLogged.attributes.GoogleProfilePicture}}" alt="Profile Image" />
-                    <img *ngIf="!userLogged.attributes.GoogleProfilePicture" src="assets/uknownPicture.png" alt="Profile Image">
+                    <img src="assets/uknownPicture.png" alt="Profile Image">
                   </button>
                 </ng-container>
                 <ng-template #largeScreen>
                   <div class="profile-large">
-                    {{ (userLogged.firstName[0] | uppercase) + '. ' + (userLogged.lastName[0] | uppercase) + (userLogged.lastName | lowercase | slice:1) }}
+                    {{user.name}}
                     <button mat-icon-button class="profile-icon">
-                      <img *ngIf="userLogged.attributes.GoogleProfilePicture" src="{{userLogged.attributes.GoogleProfilePicture}}" alt="Profile Image" />
-                      <img *ngIf="!userLogged.attributes.GoogleProfilePicture" src="assets/uknownPicture.png" alt="Profile Image">
+                      <img src="assets/uknownPicture.png" alt="Profile Image">
                     </button>
                   </div>
                 </ng-template>

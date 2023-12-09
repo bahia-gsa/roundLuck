@@ -7,6 +7,11 @@ import {User} from "../model/User";
 import {DataService} from "../services/data.service";
 import {Router} from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AuthService} from "../services/auth.service";
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {FormLoginComponent} from "../components/form-login/form-login.component";
+import {CookieService} from "ngx-cookie-service";
+
 
 
 
@@ -17,7 +22,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class NavbarComponent implements OnInit {
 
-  userLogged: any;
   isConnected: boolean = false;
   games: Game[]= [];
   user!: User;
@@ -27,8 +31,9 @@ export class NavbarComponent implements OnInit {
 
   constructor(private breakpointObserver: BreakpointObserver,
               private quarkus: QuarkusService,
-              private dataService: DataService,
+              private cookieService: CookieService,
               private router: Router,
+              private dialog: MatDialog,
               private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       newGameName: [
@@ -39,15 +44,18 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*let userDetails = this.keycloakInitService.userDetails;
-    if (userDetails != null) {
-      this.userLogged = userDetails;
+    const encodedCookieValue = this.cookieService.get('login');
+    if (encodedCookieValue) {
+      const jsonObject = JSON.parse(decodeURIComponent(encodedCookieValue));
+      this.user = {
+        id: Number(jsonObject.userId),
+        name: jsonObject.name,
+        email: jsonObject.email
+      };
       this.isConnected = true;
-      this.dataService.User$.subscribe(data => {
-          this.user = data;
-          this.getGamesByUser();
-        });
-      }*/
+      this.getGamesByUser();
+      }
+    console.log(this.user);
   }
 
   isSmallScreen$ = this.breakpointObserver.observe([Breakpoints.Handset])
@@ -56,9 +64,8 @@ export class NavbarComponent implements OnInit {
       shareReplay()
     );
 
-
-  login() {
-
+  openFormLogin() {
+    this.dialog.open(FormLoginComponent)
   }
 
   logout() {

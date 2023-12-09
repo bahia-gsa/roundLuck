@@ -47,20 +47,6 @@ public class AuthController {
         }
     }
 
-    /*@PostMapping("/isTokenValid")
-    public ResponseEntity<Boolean> isTokenValid(@RequestBody String jwtReceived){
-        try {
-            Jwt decodedJwt = this.decoder.decode(jwtReceived);
-            if (isTokenExpired(decodedJwt)) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Boolean.FALSE);
-            }
-            return ResponseEntity.ok(Boolean.TRUE);
-        } catch (Exception e) {
-            logger.error ("Failed to decode token: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Boolean.FALSE);
-        }
-    }*/
-
     @PostMapping("/isTokenValid")
     public ResponseEntity<Boolean> isTokenValid(@RequestBody String jwtReceived){
         try {

@@ -59,6 +59,7 @@ public class UserController {
                 Map<String, Object> responseBody = new HashMap<>();
                 responseBody.put("token", tokenService.generateToken(authentication));
                 responseBody.put("userId", user.getId());
+                responseBody.put("name", user.getName());
                 responseBody.put("email", user.getEmail());
                 return ResponseEntity.ok(responseBody);
         } else {

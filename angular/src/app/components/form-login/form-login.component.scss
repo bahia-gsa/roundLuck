@@ -1,0 +1,36 @@
+form {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: transparent;
+}
+
+form::before,
+form::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+form::before {
+  top: 0;
+}
+
+form::after {
+  bottom: 0;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-raised-button {
+  margin-left: 10px;
+  margin-right: 10px;
+}

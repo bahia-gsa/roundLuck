@@ -7,38 +7,33 @@ import {
 } from '@angular/common/http';
 import {from, Observable, switchMap} from 'rxjs';
 import {environment} from "../../environments/environment";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
 
+  token!: string;
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        throw new Error('Method not implemented.');
+  constructor(private cookieService: CookieService ) {
+    const encodedCookieValue = this.cookieService.get('login');
+    if (encodedCookieValue) {
+      const jsonObject = JSON.parse(decodeURIComponent(encodedCookieValue));
+      this.token = jsonObject.token;
     }
-/*
-  constructor(private keycloakService: KeycloakService) {}
-
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.url.includes(environment.baseUrlQuarkus)) {
-      return from(this.keycloakService.getToken().then(token => {
-        if (token) {
-          req = req.clone({
-            setHeaders: {
-              Authorization: `Bearer ${token}`
-            }
-          });
-        }
-        return req;
-      })).pipe(
-        switchMap(req => next.handle(req))
-      );
-    }
-    return next.handle(req);
   }
 
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (req.url.includes(environment.baseUrlQuarkus) && this.token) {
+      const authReq = req.clone({
+        setHeaders: {
+          authorization: `Bearer ${this.token}`
+        }
+      });
+      console.log('Request headers:', authReq.headers);
+      return next.handle(authReq);
+    }
 
-*/
-
+    return next.handle(req);
+  }
 
 }

@@ -23,6 +23,7 @@ import { FormLoginComponent } from './components/form-login/form-login.component
 import { FormRegisterComponent } from './components/form-register/form-register.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {CookieService} from 'ngx-cookie-service';
+import {Interceptor} from "./services/interceptor";
 
 
 
@@ -56,7 +57,12 @@ import {CookieService} from 'ngx-cookie-service';
         MatTableModule,
         ReactiveFormsModule
     ],
-  providers: [CookieService],
+  providers: [CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

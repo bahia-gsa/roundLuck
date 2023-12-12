@@ -49,6 +49,7 @@ public class AuthController {
 
     @PostMapping("/isTokenValid")
     public ResponseEntity<Boolean> isTokenValid(@RequestBody String jwtReceived){
+        logger.debug("Received token: " + jwtReceived);
         try {
             this.decoder.decode(jwtReceived);
             return ResponseEntity.ok(Boolean.TRUE);

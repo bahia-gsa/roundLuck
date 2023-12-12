@@ -13,11 +13,11 @@ import org.slf4j.LoggerFactory
 @ApplicationScoped
 class RestClient (@RestClient val client: ExternalService){
 
-    private val URL: String = "http://localhost:7070/auth/isTokenValid"
     private val logger: Logger = LoggerFactory.getLogger(RestClient::class.java)
 
 
     fun isTokenValid(token: String): Boolean {
+        logger.info("token body-----------:$token")
         val response = client.postRequest(token)
         val responseBody = response.readEntity(Boolean::class.java)
         logger.info("Response-----------:$responseBody")

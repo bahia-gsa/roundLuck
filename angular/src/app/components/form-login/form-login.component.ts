@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../../services/auth.service";
 import {CookieService} from "ngx-cookie-service";
+import {QuarkusService} from "../../services/quarkus.service";
+import {UserLogged} from "../../model/UserLogged";
 
 @Component({
   selector: 'app-form-login',
@@ -15,6 +17,7 @@ export class FormLoginComponent implements OnInit {
   logForm: FormGroup;
   hide = true;
   error_401 = false;
+  userLogged!: UserLogged;
 
   constructor(
     private authService: AuthService,
@@ -22,6 +25,7 @@ export class FormLoginComponent implements OnInit {
     private cookieService: CookieService,
     private router: Router,
     private dialog: MatDialog,
+    private quarckus: QuarkusService
   ) {
     this.logForm = this.formBuilder.group({
       email: '',

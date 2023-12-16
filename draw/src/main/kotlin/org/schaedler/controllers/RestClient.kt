@@ -17,7 +17,6 @@ class RestClient (@RestClient val client: ExternalService){
 
 
     fun isTokenValid(token: String): Boolean {
-        logger.info("token body-----------:$token")
         val response = client.postRequest(token)
         val responseBody = response.readEntity(Boolean::class.java)
         logger.info("Response-----------:$responseBody")

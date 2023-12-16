@@ -44,9 +44,10 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const encodedCookieValue = this.cookieService.get('login');
-    if (encodedCookieValue) {
-      const jsonObject = JSON.parse(decodeURIComponent(encodedCookieValue));
+    const encodedLoginCookie = this.cookieService.get('login');
+    const encodedQuarkusCookie = this.cookieService.get('qAuth');
+    if (encodedLoginCookie && encodedQuarkusCookie) {
+      const jsonObject = JSON.parse(decodeURIComponent(encodedLoginCookie));
       this.user = {
         id: Number(jsonObject.userId),
         name: jsonObject.name,

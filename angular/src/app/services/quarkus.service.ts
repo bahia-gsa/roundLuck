@@ -20,7 +20,7 @@ export class QuarkusService {
     return this.http.get(environment.baseUrlQuarkus + '/users/checkUser');
   }
 
-  public saveNewGame(newGame: { gameName: string, user: { id: number } }): Observable<any> {
+  public saveNewGame(newGame: { gameName: string, userId: number}): Observable<any> {
     return this.http.post(environment.baseUrlQuarkus + '/games', newGame);
   }
 

@@ -9,22 +9,21 @@ export class Interceptor implements HttpInterceptor {
 
   token!: string;
 
-  constructor(private cookieService: CookieService ) {
-    const encodedCookieValue = this.cookieService.get('qAuth');
-    if (encodedCookieValue) {
-      this.token = JSON.parse(decodeURIComponent(encodedCookieValue));
-      console.log("tokeenn: ", this.token);
-    }
-  }
+  private readonly excludedUrl = `${environment.baseUrlQuarkus}/auth/authenticate`;
+
+
+  constructor(private cookieService: CookieService ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-   if (req.url.includes(environment.baseUrlQuarkus) && this.token) {
-      const authReq = req.clone({
+     if (req.url.includes(environment.baseUrlQuarkus) && req.url !== this.excludedUrl) {
+       if (this.cookieService.check('qAuth')) {
+         this.token = JSON.parse(decodeURIComponent(this.cookieService.get('qAuth')));
+       }
+       const authReq = req.clone({
         setHeaders: {
           authorization: `Bearer ${this.token}`
         }
       });
-      console.log('Request headers:', authReq.headers);
       return next.handle(authReq);
     }
 

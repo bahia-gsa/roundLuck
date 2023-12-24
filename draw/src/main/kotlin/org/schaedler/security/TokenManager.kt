@@ -26,7 +26,6 @@ class TokenManager {
 
     @GET
     @Path("user")
-    @Authenticated
     fun getTeste(): String {
         return "Teste"
     }

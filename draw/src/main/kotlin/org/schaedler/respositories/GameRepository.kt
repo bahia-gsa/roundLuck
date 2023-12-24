@@ -8,7 +8,7 @@ import org.schaedler.entities.Games
 class GameRepository: PanacheRepository<Games> {
 
     fun findByUserId(userId: Long): List<Games> {
-        return find("user.id", userId).list()
+        return find("userId", userId).list()
     }
 
     fun findByName(gameName: String): Games? {

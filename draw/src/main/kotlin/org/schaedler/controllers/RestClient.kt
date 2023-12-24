@@ -23,7 +23,7 @@ class RestClient (@RestClient val client: ExternalService){
         return responseBody
     }
 }
-@RegisterRestClient(baseUri="http://localhost:7070/auth")
+@RegisterRestClient(baseUri="https://app-auth-uexc3xgdlq-uc.a.run.app/auth")
 interface ExternalService {
 
         @POST

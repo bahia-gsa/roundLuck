@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   submitInput() {
-    this.quarkus.saveNewGame({ gameName: this.newGame, user: { id: this.user.id } })
+    this.quarkus.saveNewGame({ gameName: this.newGame, userId: this.user.id})
       .subscribe({
         next: data => {
 

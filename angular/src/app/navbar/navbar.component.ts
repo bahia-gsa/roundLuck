@@ -4,13 +4,13 @@ import { map, shareReplay } from 'rxjs/operators';
 import {QuarkusService} from "../services/quarkus.service";
 import {Game} from "../model/Game";
 import {User} from "../model/User";
-import {DataService} from "../services/data.service";
 import {Router} from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {AuthService} from "../services/auth.service";
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import {FormLoginComponent} from "../components/form-login/form-login.component";
 import {CookieService} from "ngx-cookie-service";
+import {UserLogged} from "../model/UserLogged";
+import {DataService} from "../services/data.service";
 
 
 
@@ -32,6 +32,7 @@ export class NavbarComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver,
               private quarkus: QuarkusService,
               private cookieService: CookieService,
+              private dataService: DataService,
               private router: Router,
               private dialog: MatDialog,
               private formBuilder: FormBuilder) {
@@ -44,19 +45,22 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const encodedLoginCookie = this.cookieService.get('login');
-    const encodedQuarkusCookie = this.cookieService.get('qAuth');
-    if (encodedLoginCookie && encodedQuarkusCookie) {
-      const jsonObject = JSON.parse(decodeURIComponent(encodedLoginCookie));
+    if(this.cookieService.check('login')) {
+      const userObject = JSON.parse(decodeURIComponent(this.cookieService.get('login')));
       this.user = {
-        id: Number(jsonObject.userId),
-        name: jsonObject.name,
-        email: jsonObject.email
-      };
-      this.isConnected = true;
-      this.getGamesByUser();
+        id: userObject.id,
+        name: userObject.name,
+        email: userObject.email
       }
-    console.log(this.user);
+      this.isConnected = true;
+    }
+    this.dataService.User$.subscribe((user) => {
+      if (user) {
+        this.user = user;
+        this.isConnected = true;
+        //this.getGamesByUser();
+      }
+    });
   }
 
   isSmallScreen$ = this.breakpointObserver.observe([Breakpoints.Handset])
@@ -70,9 +74,13 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
+    this.cookieService.delete('qAuth');
+    this.cookieService.delete('login');
+    this.isConnected = false;
+    this.router.navigate(['']);
   }
 
-  private getGamesByUser(){
+  getGamesByUser(){
     this.quarkus.getGamesByUser(this.user.id)
       .subscribe({
         next: data => {
@@ -91,7 +99,11 @@ export class NavbarComponent implements OnInit {
   submitInput() {
     if (this.form.valid) {
       if (this.isNewGameAvailable()) {
-        this.quarkus.saveNewGame({gameName: this.form.get('newGameName')?.value, user: {id: this.user.id}})
+        const newGame = {
+          gameName: this.form.get('newGameName')?.value,
+          userId: this.user.id
+        };
+        this.quarkus.saveNewGame(newGame)
           .subscribe({
             next: data => {
               this.errorMessage = '';

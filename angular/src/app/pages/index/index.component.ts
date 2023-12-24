@@ -27,7 +27,6 @@ export class IndexComponent {
   getQuarkusAuthenticationToken(userLogged: UserLogged) {
     this.quarkusService.authenticate(userLogged).subscribe({
       next: data => {
-        console.log(data);
         this.cookieService.set('qAuth', JSON.stringify(data));
       },
       error: error => {

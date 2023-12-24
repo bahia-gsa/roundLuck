@@ -6,6 +6,7 @@ import {AuthService} from "../../services/auth.service";
 import {CookieService} from "ngx-cookie-service";
 import {QuarkusService} from "../../services/quarkus.service";
 import {UserLogged} from "../../model/UserLogged";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-form-login',
@@ -23,9 +24,10 @@ export class FormLoginComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private cookieService: CookieService,
-    private router: Router,
     private dialog: MatDialog,
-    private quarckus: QuarkusService
+    private dataService: DataService,
+    private quarkusService: QuarkusService,
+    private router: Router
   ) {
     this.logForm = this.formBuilder.group({
       email: '',
@@ -57,10 +59,17 @@ export class FormLoginComponent implements OnInit {
       const credentials = {email: formData.email, password: formData.password };
       this.authService.loginUser(credentials).subscribe({
         next: (data) => {
+          console.log(data)
           const expirationDate  = new Date();
           expirationDate .setHours(expirationDate.getHours() + 1);
           this.cookieService.set('login', JSON.stringify(data), expirationDate);
-          window.location.reload();
+          this.userLogged = {token: data.token, email: data.email};
+          this.getQuarkusAuthenticationToken(this.userLogged)
+          this.dataService.setUser({
+            id: Number(data.userId),
+            name: data.name,
+            email: data.email,
+          });
           this.dialog.closeAll();
         },
         error: ( HttpErrorResponse ) => {
@@ -71,6 +80,17 @@ export class FormLoginComponent implements OnInit {
         },
       });
     }
+  }
+
+  getQuarkusAuthenticationToken(userLogged: UserLogged) {
+    this.quarkusService.authenticate(userLogged).subscribe({
+      next: data => {
+        this.cookieService.set('qAuth', JSON.stringify(data));
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
   }
 
   closeFormLogin() {

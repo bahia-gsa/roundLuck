@@ -1,6 +1,3 @@
 
-Stypescript:S1128"+Remove this unused import of 'DataService'.(†Í©¼ûÿÿÿÿ8ÿò² Ç1
-Stypescript:S1128
-"+Remove this unused import of 'AuthService'.(‰³˜¬ùÿÿÿÿ8ÿò² Ç1
-Otypescript:S1128",Remove this unused import of 'MatDialogRef'.(ç°õü8ÿò² Ç1
-Dtypescript:S1186H"!Unexpected empty method 'logout'.(ÃşŒí8€ó² Ç1
+Mtypescript:S1128"*Remove this unused import of 'UserLogged'.(°´…Ş8—ÔùÈ1
+Atypescript:S125="Remove this commented out code.(ò£ĞÚ8—ÔùÈ1

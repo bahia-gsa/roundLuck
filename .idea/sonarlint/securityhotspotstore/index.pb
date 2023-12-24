@@ -1648,3 +1648,5 @@ G.idea/sonarlint/issuestore/d/e/dec91815f055b2eec61413265aceb6ab33d362c9,f\3\f3
 Q.idea/sonarlint/securityhotspotstore/6/e/6e858841ecca708ee5033c3817351bd574ec7dfa,e\4\e4ec94af01c68b7cd79f6ed2d75707279498da15
 w
 G.idea/sonarlint/issuestore/d/e/de7cdbb2b12d232c20ba05e806f478dd17fc76d0,b\5\b59706e540068d90dbe4eac73b1c16253093c730
+\
+,angular/src/environments/environment.prod.ts,2\6\26a2fff170ef1b9695718d8c7e333296c1271872

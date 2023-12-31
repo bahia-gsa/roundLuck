@@ -1,0 +1,26 @@
+<div class="form-group">
+  <form [formGroup]="contactForm" class="form">
+    <h1>Contact me</h1>
+    <mat-form-field class="field">
+      <mat-label>name</mat-label>
+      <input matInput placeholder="name" type="text" formControlName="name"/>
+      <mat-error *ngIf="contactForm?.get('name')?.invalid && contactForm?.get('name')?.touched">Invalid name format.</mat-error>
+    </mat-form-field >
+    <mat-form-field class="field">
+      <mat-label>email</mat-label>
+      <input matInput placeholder="example@example.com" type="text" formControlName="email"/>
+      <mat-error *ngIf="contactForm?.get('email')?.invalid && contactForm?.get('email')?.touched">Invalid email format.</mat-error>
+    </mat-form-field>
+    <mat-form-field class="field">
+      <mat-label>subject</mat-label>
+      <input matInput placeholder="subject" type="text" formControlName="subject"/>
+      <mat-error *ngIf="contactForm?.get('subject')?.invalid && contactForm?.get('subject')?.touched">Invalid subject.</mat-error>
+    </mat-form-field>
+    <mat-form-field class="field-text">
+      <mat-label>message</mat-label>
+      <textarea matInput placeholder="message" type="text" formControlName="message"></textarea>
+      <mat-error *ngIf="contactForm?.get('message')?.invalid && contactForm?.get('message')?.touched">Invalid message format.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid" (click)="sendEmail()">Send</button>
+  </form>
+</div>>

@@ -1,0 +1,51 @@
+.form-group{
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  .form{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    H1{
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin: 0;
+      color: #fff;
+      padding-bottom: 10px;
+    }
+    .field{
+      width: 90%;
+      input{
+        color: #fff;
+        font-size: 1.5rem;
+      }
+      mat-label{
+        color: #fff;
+        font-size: 1.5rem;
+        font-style: italic;
+      }
+      mat-error{
+        color: yellow;
+      }
+    }
+    .field-text{
+      width: 90%;
+      height: 48%;
+      textarea{
+        color: #fff;
+        font-size: 1.5rem;
+      }
+      mat-label{
+        color: #fff;
+        font-size: 1.5rem;
+        font-style: italic;
+      }
+      mat-error{
+        color: yellow;
+      }
+    }
+  }
+}

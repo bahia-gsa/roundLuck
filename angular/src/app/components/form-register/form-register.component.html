@@ -1,1 +1,29 @@
-<p>form-register works!</p>
+<div class="register-container">
+  <form [formGroup]="registrationForm" class="form">
+    <mat-form-field class="field">
+      <input matInput placeholder="Name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-error *ngIf="registrationForm.get('email')?.hasError('email')">Invalid email</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <input matInput placeholder="Confirm Email" formControlName="confirmEmail">
+      <mat-error *ngIf="registrationForm.get('confirmEmail')?.hasError('email')">Invalid email</mat-error>
+      <mat-error *ngIf="registrationForm.get('emailConfirm')?.hasError('isMatching') === false && !registrationForm.get('emailConfirm')?.hasError('required')">Emails do not match</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <input matInput type="password" placeholder="Password" formControlName="password">
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+      <mat-error *ngIf="registrationForm.hasError('mismatchPassword')">Passwords do not match</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="register()">Register</button>
+  </form>
+</div>

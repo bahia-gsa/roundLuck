@@ -56,4 +56,8 @@ export class QuarkusService {
     return this.http.get(environment.baseUrlQuarkus + '/draws/' + gameId);
   }
 
+  public mail(mailDetails: { name: string, from: string, subject: string, text: string }): Observable<any> {
+    return this.http.post(environment.baseUrlQuarkus + '/contact', mailDetails);
+  }
+
 }

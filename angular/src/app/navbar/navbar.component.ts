@@ -70,7 +70,10 @@ export class NavbarComponent implements OnInit {
     );
 
   openFormLogin() {
-    this.dialog.open(FormLoginComponent)
+    this.dialog.open(FormLoginComponent, {
+      width: '100%',
+      height: '35%',
+    })
   }
 
   logout() {

@@ -4,7 +4,6 @@ import {CookieService} from "ngx-cookie-service";
 import {UserLogged} from "../../model/UserLogged";
 
 
-
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',

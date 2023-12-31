@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Unbounded';
+  src: url('./Unbounded-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/assets/fonts/Unbounded-VariableFont_wght.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gluten';
+  src: url('/assets/fonts/Gluten-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+

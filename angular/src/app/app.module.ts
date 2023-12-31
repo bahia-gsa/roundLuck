@@ -24,6 +24,9 @@ import { FormRegisterComponent } from './components/form-register/form-register.
 import {MatDialogModule} from "@angular/material/dialog";
 import {CookieService} from 'ngx-cookie-service';
 import {Interceptor} from "./services/interceptor";
+import { FooterComponent } from './components/footer/footer.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 
@@ -37,6 +40,9 @@ import {Interceptor} from "./services/interceptor";
     SelectedGameComponent,
     FormLoginComponent,
     FormRegisterComponent,
+    FooterComponent,
+    AboutComponent,
+    ContactComponent,
 
   ],
     imports: [

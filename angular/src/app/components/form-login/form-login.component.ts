@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../../services/auth.service";
 import {CookieService} from "ngx-cookie-service";
 import {QuarkusService} from "../../services/quarkus.service";
 import {UserLogged} from "../../model/UserLogged";
 import {DataService} from "../../services/data.service";
+import {FormRegisterComponent} from "../form-register/form-register.component";
 
 @Component({
   selector: 'app-form-login',
@@ -20,6 +21,7 @@ export class FormLoginComponent implements OnInit {
   error_401 = false;
   userLogged!: UserLogged;
 
+
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
@@ -27,10 +29,11 @@ export class FormLoginComponent implements OnInit {
     private dialog: MatDialog,
     private dataService: DataService,
     private quarkusService: QuarkusService,
-    private router: Router
+    @Inject(MAT_DIALOG_DATA) public data: any
+
   ) {
     this.logForm = this.formBuilder.group({
-      email: '',
+      email: this.data?.email ?? '',
       password: '',
     });
   }
@@ -80,6 +83,14 @@ export class FormLoginComponent implements OnInit {
         },
       });
     }
+  }
+
+  openRegisterForm() {
+    this.dialog.closeAll();
+    this.dialog.open(FormRegisterComponent, {
+      width: '100%',
+      height: '60%',
+    })
   }
 
   getQuarkusAuthenticationToken(userLogged: UserLogged) {

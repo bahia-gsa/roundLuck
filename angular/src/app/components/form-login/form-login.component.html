@@ -1,5 +1,5 @@
-<form [formGroup]="logForm">
-  <h1>Connection</h1>
+<form [formGroup]="logForm" class="form">
+  <h1>Login</h1>
   <mat-form-field>
     <mat-label>email</mat-label>
     <input matInput placeholder="example@example.com" type="text" formControlName="email"/>
@@ -14,15 +14,12 @@
     >At least 8 characters including number, lower case, upper case, special character.
     </mat-error>
   </mat-form-field>
-  <div>
-
-  </div>
 
   <div>
     <mat-error *ngIf="error_401">Incorrect password or login.</mat-error>
   </div>
-  <div>
+  <div class="option-wrapper">
     <button mat-raised-button class="button-left" color="primary" (click)="loginRequest()">Login</button>
-    <button mat-raised-button class="button-right" (click)="closeFormLogin()">Close</button>
+    <a (click)="openRegisterForm()">New user ? </a>
   </div>
 </form>

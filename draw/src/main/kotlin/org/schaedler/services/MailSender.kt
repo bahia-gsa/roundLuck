@@ -6,6 +6,8 @@ import io.quarkus.mailer.Mailer
 import io.quarkus.qute.Template
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.inject.Inject
+import org.eclipse.microprofile.config.inject.ConfigProperty
+import org.schaedler.dto.contactDTO
 import org.schaedler.entities.Draws
 import org.schaedler.respositories.PlayersRepository
 import org.slf4j.Logger
@@ -21,6 +23,9 @@ class MailSender {
 
     private val logger: Logger = LoggerFactory.getLogger(MailSender::class.java)
 
+    @ConfigProperty(name = "MAIL_BOX")
+    lateinit var mailBox: String
+
     @Inject
     lateinit var newDraw: Template
 
@@ -28,7 +33,11 @@ class MailSender {
     lateinit var newDrawToGamePlayers: Template
 
     @Inject
+    lateinit var newContact: Template
+
+    @Inject
     lateinit var playersRepository: PlayersRepository
+
 
 
     fun sendEmailToDrawnPlayer(draw: Draws) {
@@ -74,5 +83,24 @@ class MailSender {
                 mailer.send(mail)
             }
         }
+    }
+
+    fun sendEmailFromContact(contact: contactDTO) {
+        val contactInstance = newContact.instance()
+        contactInstance.data(
+            mapOf(
+                "name" to (contact.name),
+                "email" to (contact.from),
+                "subject" to (contact.subject),
+                "message" to (contact.message)
+            )
+        )
+        val contactContent = contactInstance.render()
+        val email = Mail.withHtml(
+            mailBox,
+            "${contact.subject}",
+            contactContent
+        )
+        mailer.send(email)
     }
 }

@@ -8,8 +8,8 @@
     </mat-form-field >
     <mat-form-field class="field">
       <mat-label>email</mat-label>
-      <input matInput placeholder="example@example.com" type="text" formControlName="email"/>
-      <mat-error *ngIf="contactForm?.get('email')?.invalid && contactForm?.get('email')?.touched">Invalid email format.</mat-error>
+      <input matInput placeholder="example@example.com" type="text" formControlName="from"/>
+      <mat-error *ngIf="contactForm?.get('from')?.invalid && contactForm?.get('from')?.touched">Invalid email format.</mat-error>
     </mat-form-field>
     <mat-form-field class="field">
       <mat-label>subject</mat-label>

@@ -1,5 +1,6 @@
 package org.schaedler.controllers
 
+import io.quarkus.security.Authenticated
 import jakarta.inject.Inject
 import jakarta.transaction.Transactional
 import jakarta.validation.Valid
@@ -15,6 +16,7 @@ import java.time.LocalDateTime
 @Path("api/games")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Authenticated
 class GameController {
     @Inject
     lateinit var gameRepository: GameRepository

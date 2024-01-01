@@ -13,10 +13,11 @@ export class ContactComponent {
   contactForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private quarqusService: QuarkusService,) {
+              private quarkusService: QuarkusService,
+              public dialog: MatDialog) {
     this.contactForm = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      from: ['', [Validators.required, Validators.email]],
       subject: ['', [Validators.required,
         Validators.minLength(5),
         Validators.maxLength(50)]],
@@ -26,13 +27,12 @@ export class ContactComponent {
     });
   }
 
-
   sendEmail() {
     if (this.contactForm.valid) {
       console.log(this.contactForm.value);
-      this.quarqusService.mail(this.contactForm.value).subscribe({
+      this.quarkusService.mail(this.contactForm.value).subscribe({
         next: data => {
-          console.log(data);
+          this.dialog.closeAll()
         },
         error: error => {
           console.error('There was an error!', error);

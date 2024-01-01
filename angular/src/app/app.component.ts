@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {QuarkusService} from "./services/quarkus.service";
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
@@ -8,7 +8,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Draw your luck';
 
   isMobile: boolean = false;
@@ -19,11 +19,6 @@ export class AppComponent implements OnInit {
       this.isMobile = result.matches;
     });
   }
-
-    ngOnInit(): void {
-
-    }
-
 
 }
 

@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100%;
+  padding-top: 1.5em;
   H1 {
     font-size: 2.5rem;
     font-weight: 300;

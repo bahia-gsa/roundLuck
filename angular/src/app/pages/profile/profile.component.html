@@ -1,0 +1,33 @@
+<div class="profile-container">
+  <div class="profile-image">
+    <img src="assets/uknownPicture.png" alt="profile image">
+  </div>
+  <div class="profile-info">
+    <p>NAME:
+      <ng-container *ngIf="!editingName; else editNameTemplate">
+        <span>{{ user?.name }}</span>
+      </ng-container>
+      <mat-icon *ngIf="!editingName" (click)="editName()">edit</mat-icon>
+    </p>
+    <p>EMAIL:
+      <ng-container *ngIf="!editingEmail; else editEmailTemplate">
+        <span>{{ user?.email }}</span>
+      </ng-container>
+      <mat-icon *ngIf="!editingEmail" (click)="editEmail()">edit</mat-icon>
+    </p>
+  </div>
+  <div class="buttons">
+    <button class="btn btn-primary" (click)="deleteProfile()">DELETE</button>
+  </div>
+</div>
+
+<ng-template #editNameTemplate>
+    <input type="text" [(ngModel)]="editingUser.name" (keyup.enter)="saveName()">
+    <mat-icon (click)="saveName()">done_outline</mat-icon>
+</ng-template>
+
+<ng-template #editEmailTemplate>
+    <input type="text" [(ngModel)]="editingUser.email" (keyup.enter)="saveEmail()">
+    <mat-icon (click)="saveEmail()">done_outline</mat-icon>
+</ng-template>
+

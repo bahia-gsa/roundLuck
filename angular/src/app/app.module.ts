@@ -27,6 +27,7 @@ import {Interceptor} from "./services/interceptor";
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 
 
@@ -43,6 +44,7 @@ import { ContactComponent } from './components/contact/contact.component';
     FooterComponent,
     AboutComponent,
     ContactComponent,
+    ProfileComponent,
 
   ],
     imports: [

@@ -35,4 +35,8 @@ export class FooterComponent implements OnInit {
     });
   }
 
+  openLinkedInProfile(){
+    window.open('https://www.linkedin.com/in/schaedler-almeida', '_blank');
+  }
+
 }

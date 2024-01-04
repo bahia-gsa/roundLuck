@@ -62,7 +62,6 @@ export class FormLoginComponent implements OnInit {
       const credentials = {email: formData.email, password: formData.password };
       this.authService.loginUser(credentials).subscribe({
         next: (data) => {
-          console.log(data)
           const expirationDate  = new Date();
           expirationDate .setHours(expirationDate.getHours() + 1);
           this.cookieService.set('login', JSON.stringify(data), expirationDate);
@@ -85,13 +84,6 @@ export class FormLoginComponent implements OnInit {
     }
   }
 
-  openRegisterForm() {
-    this.dialog.closeAll();
-    this.dialog.open(FormRegisterComponent, {
-      width: '100%',
-      height: '60%',
-    })
-  }
 
   getQuarkusAuthenticationToken(userLogged: UserLogged) {
     this.quarkusService.authenticate(userLogged).subscribe({
@@ -104,8 +96,8 @@ export class FormLoginComponent implements OnInit {
     })
   }
 
-  closeFormLogin() {
-    this.dialog.closeAll();
+  openPwdForgot() {
+    console.log("openPwdForgot")
   }
 
 

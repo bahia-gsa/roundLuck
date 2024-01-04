@@ -5,5 +5,25 @@
   justify-content: space-between;
   align-items: center;
   font-size: 1.2rem;
+  color: #A7A7A7;
   opacity: 0.5;
+  .footer-section-logos{
+    padding: 10px;
+    text-align: left;
+    margin-left: auto;
+    img {
+      width: 40px;
+      height: auto;
+    }
+  }
+}
+
+.footer-menu{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #A7A7A7;
+  padding: 1rem;
 }

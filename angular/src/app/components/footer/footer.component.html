@@ -1,5 +1,10 @@
-<footer class="footer">
-  <span>© draw {{currentYear}}</span>
+<div class="footer-menu">
   <a (click)="openAbout()">About</a>
   <a (click)="openContact()">Contact</a>
+</div>
+<footer class="footer">
+  <span>© draw {{currentYear}}</span>
+  <div class="footer-section-logos">
+    <img (click)="openLinkedInProfile()" src="assets/images/linkedin.svg" alt="facebook icon">
+  </div>
 </footer>

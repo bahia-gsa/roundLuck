@@ -24,4 +24,13 @@ export class AuthService {
     return this.http.post(environment.baseUrlAuth + '/profile/login', {}, headerOption);
   }
 
+  public changeName(userId: number, name: string): Observable<any>   {
+    return this.http.post(environment.baseUrlAuth + '/profile/changeName/' + userId, {name});
+  }
+  public changeEmail(userId: number, email: string): Observable<any>   {
+    return this.http.post(environment.baseUrlAuth + '/profile/changeEmail/' + userId, {email});
+  }
+
+
+
 }

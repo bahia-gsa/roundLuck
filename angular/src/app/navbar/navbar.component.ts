@@ -11,6 +11,7 @@ import {FormLoginComponent} from "../components/form-login/form-login.component"
 import {CookieService} from "ngx-cookie-service";
 import {UserLogged} from "../model/UserLogged";
 import {DataService} from "../services/data.service";
+import {FormRegisterComponent} from "../components/form-register/form-register.component";
 
 
 
@@ -58,7 +59,6 @@ export class NavbarComponent implements OnInit {
       if (user) {
         this.user = user;
         this.isConnected = true;
-        //this.getGamesByUser();
       }
     });
   }
@@ -72,7 +72,14 @@ export class NavbarComponent implements OnInit {
   openFormLogin() {
     this.dialog.open(FormLoginComponent, {
       width: '100%',
-      height: '35%',
+      height: '40%',
+    })
+  }
+
+  openFormRegister() {
+    this.dialog.open(FormRegisterComponent, {
+      width: '100%',
+      height: '60%',
     })
   }
 

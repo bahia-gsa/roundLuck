@@ -42,16 +42,18 @@
                 (click)="drawer.toggle()"
                 (click)="getGamesByUser()"
                 *ngIf="isSmallScreen$ | async">
-                <mat-icon aria-label="Side nav toggle icon">casino</mat-icon>
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
               </button>
             </ng-container>
           </div>
           <div class="col-auto ml-auto connection">
             <div class="login-container" *ngIf="!isConnected">
               <div class="buttons">
-                <p>Access your account :</p>
-                <button mat-button class="login" (click)="openFormLogin()">
-                  <mat-icon class="icon-login">login</mat-icon>
+                <button mat-button (click)="openFormLogin()">
+                  Login
+                </button>
+                <button mat-button (click)="openFormRegister()">
+                  Register ?
                 </button>
               </div>
             </div>
@@ -74,7 +76,7 @@
               </button>
 
               <mat-menu #menu="matMenu">
-                <button mat-menu-item  class="option-panel">
+                <button mat-menu-item  class="option-panel" [routerLink]="['/profile']">
                   Profile
                 </button>
                 <button mat-menu-item (click)="logout()"  class="option-panel">Logout</button>

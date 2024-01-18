@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   editingName: boolean = false;
   editingEmail: boolean = false;
   editingUser: { name: string; email: string } = {name: '', email: ''};
+  picture: string | undefined;
 
   constructor(private auth: AuthService,
               private cookieService: CookieService) { }
@@ -27,6 +28,7 @@ export class ProfileComponent implements OnInit {
         email: userObject.email
       }
     }
+    this.setProfilePicture();
   }
 
    editName() {
@@ -52,10 +54,13 @@ export class ProfileComponent implements OnInit {
       console.log('Delete profile');
     }
 
-
-
-
-
+  setProfilePicture() {
+    const loggedInUserString = sessionStorage.getItem('loggedInUser');
+    if (loggedInUserString !== null) {
+      const loggedInUser = JSON.parse(loggedInUserString);
+      this.picture = loggedInUser.picture;
+    }
+  }
 
 
 }

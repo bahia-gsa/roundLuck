@@ -53,7 +53,7 @@
                   Login
                 </button>
                 <button mat-button (click)="openFormRegister()">
-                  Register ?
+                  Register
                 </button>
               </div>
             </div>
@@ -62,14 +62,14 @@
                 <ng-container *ngIf="(isSmallScreen$ | async); else largeScreen">
                   {{user.name}}
                   <button mat-icon-button class="profile-icon">
-                    <img src="assets/uknownPicture.png" alt="Profile Image">
+                    <img [src]="picture || 'assets/uknownPicture.png'" alt="Profile Image">
                   </button>
                 </ng-container>
                 <ng-template #largeScreen>
                   <div class="profile-large">
                     {{user.name}}
                     <button mat-icon-button class="profile-icon">
-                      <img src="assets/uknownPicture.png" alt="Profile Image">
+                      <img [src]="picture || 'assets/uknownPicture.png'" alt="Profile Image">
                     </button>
                   </div>
                 </ng-template>

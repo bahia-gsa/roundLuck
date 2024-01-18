@@ -1,3 +1,9 @@
 
-<
-java:S1452 "&Remove usage of generic wildcard type.(ížÀ
+i
+java:S1192@"GDefine a constant instead of duplicating this literal "userId" 3 times.(÷ôãäüÿÿÿÿ8²”‚ëÐ1
+b
+java:S1192B"FDefine a constant instead of duplicating this literal "email" 3 times.(Ãê›8³”‚ëÐ1
+c
+java:S1192?"FDefine a constant instead of duplicating this literal "token" 3 times.(éŸý£8³”‚ëÐ1
+C
+java:S1452#"&Remove usage of generic wildcard type.(ížÀ8Ä”‚ëÐ1

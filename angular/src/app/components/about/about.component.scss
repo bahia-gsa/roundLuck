@@ -5,19 +5,72 @@
   justify-content: flex-start;
   height: 100%;
   padding-top: 1.5em;
+  gap: 1em;
+  font-family: Unbounded, sans-serif;
   H1 {
     font-size: 2.5rem;
     font-weight: 300;
-    padding: 0.5rem;
+    padding: 0.8rem;
     color: #fff;
+    text-align: justify;
   }
   p {
-    padding: 0 10%;
+    padding: 0 1rem;
     text-align: justify;
-    font-size: 1.2rem;
-    font-weight: 300;
+    font-size: 1rem;
     margin: 0;
-    color: #fff;
+    color: #A7A7A7;
   }
+  .component{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    font-family: Unbounded, sans-serif;
+    padding: 0 1rem;
 
-}
+    img {
+      max-width: 20%;
+      max-height: 5rem;
+    }
+    p {
+      padding: 0;
+      font-size: 1rem;
+      margin: 0;
+      color: #A7A7A7;
+
+    }
+  }
+  .deployment{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    font-family: Unbounded, sans-serif;
+    padding: 0 1rem;
+    padding-bottom: 1.5rem;
+    p {
+      padding: 0;
+      font-size: 1rem;
+      margin: 0;
+      color: #A7A7A7;
+
+    }
+    span {
+      padding: 0;
+      font-size: 1rem;
+      margin: 0;
+      color: #A7A7A7;
+      font-weight: bold;
+    }
+    .contact{
+      color: rgb(13, 110, 253);
+      font-weight: 400;
+      text-decoration: underline;
+    }
+  }
+ }
+
+

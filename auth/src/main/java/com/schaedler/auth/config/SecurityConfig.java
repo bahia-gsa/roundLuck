@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -45,10 +46,10 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-   /* @Bean
-    CustomAuthenticationProvider customAuthenticationProvider() {
-        return new CustomAuthenticationProvider(userDetailService, passwordEncryptor(), jwtDecoder());
-    }*/
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -59,15 +60,14 @@ public class SecurityConfig {
                             "/auth/open",
                             "/auth/profile/register",
                             "/auth/profile/login",
+                            "/auth/profile/loginGoogle",
                             "/auth/redirect",
                             "/auth/userDetails",
                             "/auth/isTokenValid").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .userDetailsService(userDetailService)
-                //.authenticationProvider(customAuthenticationProvider())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                //.csrf(AbstractHttpConfigurer::disable)
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.decoder(jwtDecoder())))
                 .httpBasic(Customizer.withDefaults())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))

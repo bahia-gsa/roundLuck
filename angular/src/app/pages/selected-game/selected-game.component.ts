@@ -101,7 +101,7 @@ export class SelectedGameComponent implements OnInit{
           console.log("error", error);
         }
       });
-    }, 2000);
+    }, 1000);
   }
 
   action(){

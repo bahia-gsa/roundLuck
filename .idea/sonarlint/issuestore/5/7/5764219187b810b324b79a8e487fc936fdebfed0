@@ -1,0 +1,13 @@
+
+l
+java:S1128"ORemove this unused import 'org.springframework.security.core.GrantedAuthority'.(½Á±ÿ8û×óêĞ1
+s
+java:S1128"VRemove this unused import 'org.springframework.security.core.userdetails.UserDetails'.(ÊÁ¥8û×óêĞ1
+r
+java:S1128	"URemove this unused import 'org.springframework.security.oauth2.core.user.OAuth2User'.(ŒÃÏ»8û×óêĞ1
+S
+java:S1128"1Remove this unused import 'java.util.Collection'.(¹ÉĞšùÿÿÿÿ8û×óêĞ1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8û×óêĞ1
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8û×óêĞ1

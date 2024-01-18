@@ -12,6 +12,7 @@ import {CookieService} from "ngx-cookie-service";
 import {UserLogged} from "../model/UserLogged";
 import {DataService} from "../services/data.service";
 import {FormRegisterComponent} from "../components/form-register/form-register.component";
+import {AuthService} from "../services/auth.service";
 
 
 
@@ -29,6 +30,7 @@ export class NavbarComponent implements OnInit {
   newGameName!: string;
   errorMessage: string = '';
   form: FormGroup;
+  public picture: string | undefined;
 
   constructor(private breakpointObserver: BreakpointObserver,
               private quarkus: QuarkusService,
@@ -36,7 +38,8 @@ export class NavbarComponent implements OnInit {
               private dataService: DataService,
               private router: Router,
               private dialog: MatDialog,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private authService: AuthService) {
     this.form = this.formBuilder.group({
       newGameName: [
         this.newGameName,
@@ -46,13 +49,19 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.cookieService.check('login')) {
+    /*if(this.cookieService.check('login')) {
       const userObject = JSON.parse(decodeURIComponent(this.cookieService.get('login')));
       this.user = {
         id: userObject.id,
         name: userObject.name,
         email: userObject.email
       }
+      this.isConnected = true;
+    }*/
+    if (sessionStorage.getItem('token')){
+      const tokenValue = sessionStorage.getItem('token')!.slice(1, -1);
+      this.loggingWithGoogle(tokenValue);
+      this.setProfilePicture()
       this.isConnected = true;
     }
     this.dataService.User$.subscribe((user) => {
@@ -72,7 +81,7 @@ export class NavbarComponent implements OnInit {
   openFormLogin() {
     this.dialog.open(FormLoginComponent, {
       width: '100%',
-      height: '40%',
+      height: '45%',
     })
   }
 
@@ -91,19 +100,21 @@ export class NavbarComponent implements OnInit {
   }
 
   getGamesByUser(){
-    this.quarkus.getGamesByUser(this.user.id)
-      .subscribe({
-        next: data => {
-          this.games = data;
-        },
-        error: error => {
-        }
-      });
+      this.quarkus.getGamesByUser(this.user.id)
+        .subscribe({
+          next: data => {
+            this.games = data;
+          },
+          error: error => {
+          }
+        });
   }
 
   openGame(gameId: number) {
+    if (this.user) {
     const userId = this.user.id;
     this.router.navigate(['/game'], { queryParams: { gameId, userId } });
+    }
   }
 
   submitInput() {
@@ -147,4 +158,48 @@ export class NavbarComponent implements OnInit {
   get newGameNameControl() {
     return this.form.get('newGameName');
   }
+
+  loggingWithGoogle(googleToken: string) {
+    this.authService.loginWithGoogle(googleToken).subscribe({
+      next: data => {
+        const expirationDate  = new Date();
+        expirationDate .setHours(expirationDate.getHours() + 1);
+        this.cookieService.set('login', JSON.stringify(data), expirationDate);
+        this.getQuarkusAuthenticationToken({token: data.token, email: data.email})
+        this.dataService.setUser({
+          id: Number(data.userId),
+          name: data.name,
+          email: data.email,
+        });
+        this.isConnected = true;
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
+
+    }
+
+  getQuarkusAuthenticationToken(userLogged: UserLogged) {
+    this.quarkus.authenticate(userLogged).subscribe({
+      next: data => {
+        this.cookieService.set('qAuth', JSON.stringify(data));
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
+}
+
+setProfilePicture() {
+  const loggedInUserString = sessionStorage.getItem('loggedInUser');
+  if (loggedInUserString !== null) {
+    const loggedInUser = JSON.parse(loggedInUserString);
+    this.picture = loggedInUser.picture;
+  }
+}
+
+
+
+
 }

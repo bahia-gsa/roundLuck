@@ -1,9 +1,13 @@
 .messageContainer {
-  background-color: grey;
+  background-color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
+  H1 {
+    font-size: 2.8rem;
+    color: white;
+  }
 }

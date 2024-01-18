@@ -41,4 +41,19 @@ public class TokenService {
         var encoderParameters = JwtEncoderParameters.from(JwsHeader.with(MacAlgorithm.HS512).build(), claims);
         return this.encoder.encode(encoderParameters).getTokenValue();
     }
+
+    public String generateTokenGoogleLogin(AppUser user) {
+        Instant now = Instant.now();
+        JwtClaimsSet claims = JwtClaimsSet.builder()
+                .issuer("AUTH SCHAEDLER")
+                .issuedAt(now)
+                .expiresAt(now.plus(1, ChronoUnit.HOURS))
+                .subject(user.getEmail())
+                .claim("userId", user.getId())
+                .claim("name", user.getName())
+                .build();
+
+        var encoderParameters = JwtEncoderParameters.from(JwsHeader.with(MacAlgorithm.HS512).build(), claims);
+        return this.encoder.encode(encoderParameters).getTokenValue();
+    }
 }

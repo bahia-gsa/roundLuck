@@ -1,0 +1,7 @@
+
+E	java:S1061"+Replace this use of System.out by a logger.(òï­¿øÿÿÿÿ
+V	java:S125>"<This block of commented-out lines of code should be removed.(Ñ‰®ûÿÿÿÿ
+`
+java:S1128"JRemove this unused import 'com.schaedler.auth.controllers.AuthController'.(Ù¨Ð
+n
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡ž¸Îùÿÿÿÿ

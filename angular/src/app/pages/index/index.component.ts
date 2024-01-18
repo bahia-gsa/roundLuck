@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {QuarkusService} from "../../services/quarkus.service";
 import {CookieService} from "ngx-cookie-service";
 import {UserLogged} from "../../model/UserLogged";
+import {AuthService} from "../../services/auth.service";
 
 
 @Component({
@@ -33,4 +34,7 @@ export class IndexComponent {
       }
     })
   }
+
+
+
 }

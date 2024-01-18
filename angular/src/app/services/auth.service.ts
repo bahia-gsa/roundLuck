@@ -24,6 +24,13 @@ export class AuthService {
     return this.http.post(environment.baseUrlAuth + '/profile/login', {}, headerOption);
   }
 
+  public loginWithGoogle(token: string): Observable<any>   {
+    const headerOptions = { headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })};
+    return this.http.post(environment.baseUrlAuth + '/profile/loginGoogle', token, headerOptions);
+  }
+
   public changeName(userId: number, name: string): Observable<any>   {
     return this.http.post(environment.baseUrlAuth + '/profile/changeName/' + userId, {name});
   }

@@ -1,17 +1,0 @@
-
-Y
-java:S26294"7Use the built-in formatting to construct this argument.(¢£™ûÿÿÿÿ8ßœÒÅ1
-O
-java:S6863:"2Set a HttpStatus code reflective of the operation.(üøĞ8‡†ŠåÉ1
-]
-java:S1612&";Replace this lambda with method reference 'claimsMap::put'.(Ûº†ûşÿÿÿÿ8†ÒÅ1
-a
-java:S1128"DRemove this unused import 'com.schaedler.auth.service.TokenService'.(™ÔáÜ8‹ÒÅ1
-b
-java:S1128"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤Šúÿÿÿÿ8‹ÒÅ1
-j
-java:S1128	"MRemove this unused import 'org.springframework.security.core.Authentication'.(ñıÓ“8ŒÒÅ1
-k
-java:S1128"NRemove this unused import 'org.springframework.web.servlet.view.RedirectView'.(ñÎ²Ò8ŒÒÅ1
-Y
-java:S1128"7Remove this unused import 'java.net.http.HttpResponse'.(’ûÌûÿÿÿÿ8ŒÒÅ1

@@ -14,6 +14,10 @@ export class AuthService {
     return this.http.post(environment.baseUrlAuth + '/profile/register', newUser);
   }
 
+  public deleteUser(userId: number): Observable<any>   {
+    return this.http.delete(environment.baseUrlAuth + '/profile/' + userId);
+  }
+
   public loginUser(credentials: { email: string, password: string }): Observable<any>   {
     const basicAuthEncoded = 'Basic ' + btoa(credentials.email + ':' + credentials.password);
     const headerOption = { headers: new HttpHeaders({

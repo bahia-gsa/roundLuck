@@ -61,6 +61,7 @@ public class SecurityConfig {
                             "/auth/profile/register",
                             "/auth/profile/login",
                             "/auth/profile/loginGoogle",
+                            "/auth/profile/login-with-google-mobile",
                             "/auth/redirect",
                             "/auth/userDetails",
                             "/auth/isTokenValid").permitAll();

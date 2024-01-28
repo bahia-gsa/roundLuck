@@ -8,7 +8,7 @@ form {
   justify-content: space-evenly;
   background-color: transparent;
   H1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 100;
     margin: 0;
     color: #fff;
@@ -48,7 +48,7 @@ mat-form-field {
   }
   input {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
   mat-error {
     color: yellow;
@@ -73,8 +73,5 @@ mat-raised-button {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  .google-login{
-  }
-  .g_id_signin{
-  }
+
 }

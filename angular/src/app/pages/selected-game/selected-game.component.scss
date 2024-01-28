@@ -69,6 +69,7 @@
   h2{
     margin: 0;
     padding: 1rem;
+    color: rgb(173, 46, 116);
   }
   .icon-container{
     display: flex;
@@ -96,11 +97,11 @@ background-color: black;
 
 .content-wrapper {
   text-align: center;
-
+  font-size: 1.5rem;
 }
 
 .icon{
-  color: white;
+  color: rgb(173, 46, 116);
   font-size: 7rem;
   width: 100%;
   height: auto;

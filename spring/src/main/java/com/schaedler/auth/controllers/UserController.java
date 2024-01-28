@@ -2,7 +2,9 @@ package com.schaedler.auth.controllers;
 
 import ch.qos.logback.classic.Logger;
 import com.schaedler.auth.dto.AppUserDTO;
+import com.schaedler.auth.dto.GoogleAccessTokenInfo;
 import com.schaedler.auth.dto.GoogleTokenInfo;
+import com.schaedler.auth.dto.TokenRequest;
 import com.schaedler.auth.entities.AppUser;
 import com.schaedler.auth.repositories.UserRepository;
 import com.schaedler.auth.service.GoogleTokenValidator;
@@ -109,6 +111,36 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
         }
 
+    }
+
+    @PostMapping("/login-with-google-mobile")
+    public ResponseEntity<Object> getTokenGoogleMobile(@RequestBody TokenRequest tokenRequest) {
+        GoogleAccessTokenInfo userInfo = googleTokenValidator.validateAccessToken(tokenRequest.getAccessToken());
+        if (userInfo != null) {
+            Optional<AppUser> checkUserExists = userRepository.findByEmail(userInfo.getEmail());
+            if (checkUserExists.isPresent()) {
+                AppUser user = checkUserExists.get();
+                Map<String, Object> responseBody = new HashMap<>();
+                responseBody.put("token", tokenService.generateTokenGoogleLogin(user));
+                responseBody.put("userId", user.getId());
+                responseBody.put("name", user.getName());
+                responseBody.put("email", user.getEmail());
+                return ResponseEntity.ok(responseBody);
+            } else {
+                AppUser user = new AppUser();
+                user.setEmail(userInfo.getEmail());
+                user.setName(tokenRequest.getName());
+                AppUser savedUser = userRepository.save(user);
+                Map<String, Object> responseBody = new HashMap<>();
+                responseBody.put("token", tokenService.generateTokenGoogleLogin(savedUser));
+                responseBody.put("userId", savedUser.getId());
+                responseBody.put("name", savedUser.getName());
+                responseBody.put("email", savedUser.getEmail());
+                return ResponseEntity.ok(responseBody);
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
+        }
     }
 
 

@@ -1,11 +1,11 @@
 
+i
+java:S1192L"GDefine a constant instead of duplicating this literal "userId" 5 times.(÷ôãäüÿÿÿÿ8©ú€Õ1
 b
-java:S1192J"GDefine a constant instead of duplicating this literal "userId" 3 times.(÷ôãäüÿÿÿÿ
-[
-java:S1192L"FDefine a constant instead of duplicating this literal "email" 3 times.(Ãê›
-\
-java:S1192I"FDefine a constant instead of duplicating this literal "token" 3 times.(éŸı£
+java:S1192N"FDefine a constant instead of duplicating this literal "email" 5 times.(Ãê›8ªú€Õ1
+c
+java:S1192K"FDefine a constant instead of duplicating this literal "token" 5 times.(éŸı£8ªú€Õ1
 C
-java:S1452#"&Remove usage of generic wildcard type.(íÀ8“Ùô®Ó1
+java:S1452%"&Remove usage of generic wildcard type.(íÀ8Áú€Õ1
 H
-java:S14525"&Remove usage of generic wildcard type.(±­—Ûøÿÿÿÿ8¼ƒü®Ó1
+java:S14527"&Remove usage of generic wildcard type.(±­—Ûøÿÿÿÿ8Ãú€Õ1

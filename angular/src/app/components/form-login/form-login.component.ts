@@ -110,7 +110,7 @@ export class FormLoginComponent implements OnInit {
   }
 
   openPwdForgot() {
-    console.log("openPwdForgot")
+    alert('Sorry, not implemented yet');
   }
 
 }

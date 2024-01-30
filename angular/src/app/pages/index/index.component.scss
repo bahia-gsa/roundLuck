@@ -18,9 +18,35 @@
 }
 
 .letter {
-  font-size: 2rem;
+  font-size: 3rem;
   opacity: 0;
   animation: letterFadeIn 1s linear forwards;
+  background-image: url(https://cdn.pixabay.com/photo/2017/07/03/20/17/abstract-2468874_960_720.jpg);
+  background-attachment: fixed;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.phrases-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
+}
+
+.effect {
+  font-family: "Unbounded", sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #000;
+  animation: blink-caret 0.75s infinite;
+  color: rgb(173, 46, 116)
+}
+
+@keyframes blink-caret {
+  50% {
+    border-color: transparent;
+  }
 }
 
 .letter:nth-child(1),

@@ -8,6 +8,7 @@
       <div class="formContainer">
         <form class="form" [formGroup]="form" (ngSubmit)="submitInput()">
           <mat-form-field appearance="fill">
+            <mat-label>Add a new game</mat-label>
             <input matInput name="newGameName" placeholder="game name..." formControlName="newGameName">
             <mat-error *ngIf="newGameNameControl?.hasError('required')">Game name is required</mat-error>
             <mat-error *ngIf="newGameNameControl?.hasError('minlength')">Game name must be at least 3 characters</mat-error>
@@ -47,18 +48,15 @@
             </ng-container>
           </div>
           <div class="col-auto ml-auto connection">
-            <div class="login-container" *ngIf="!isConnected">
-              <div class="buttons">
-                <button mat-button (click)="openFormLogin()">
-                  Login
-                </button>
-                <button mat-button (click)="openFormRegister()">
-                  Register
-                </button>
-              </div>
+            <div class="access-container" *ngIf="!isConnected">
+              <button mat-button (click)="openFormLogin()">
+                Access
+                <mat-icon>key</mat-icon>
+              </button>
+
             </div>
             <div class="menu" *ngIf="isConnected">
-              <button mat-button [matMenuTriggerFor]="menu" class="profile-button">
+              <button mat-button *ngIf="user" [matMenuTriggerFor]="menu" class="profile-button">
                 <ng-container *ngIf="(isSmallScreen$ | async); else largeScreen">
                   {{user.name}}
                   <button mat-icon-button class="profile-icon">

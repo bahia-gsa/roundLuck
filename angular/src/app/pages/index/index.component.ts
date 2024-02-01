@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {QuarkusService} from "../../services/quarkus.service";
 import {CookieService} from "ngx-cookie-service";
 import {UserLogged} from "../../model/UserLogged";
-import {AuthService} from "../../services/auth.service";
 import { gsap } from 'gsap';
 
 
@@ -15,7 +14,7 @@ export class IndexComponent implements OnInit {
 
   userLogged!: UserLogged;
   phrases: string[] = [
-    "create a a game",
+    "create a game",
     "easily add, remove, and edit players",
     "randomly select a player",
     "keep track of who's turn it is"

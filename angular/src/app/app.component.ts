@@ -1,7 +1,7 @@
-import {Component, HostListener} from '@angular/core';
-import {QuarkusService} from "./services/quarkus.service";
+import {Component} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import {CookieService} from "ngx-cookie-service";
+import {gsap} from "gsap";
 
 
 @Component({
@@ -21,21 +21,20 @@ export class AppComponent {
     });
   }
 
- /* @HostListener('window:beforeunload', ['$event'])
-  beforeUnloadHandler(event: any) {
-    this.clearSessionStorage();
-    this.removeCookie('qAuth');
-    this.removeCookie('login');
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.animateTitle();
+    });
   }
 
-  private clearSessionStorage() {
-    if (window.location.origin === 'https://www.draw.schaedler-almeida.space') {
-      sessionStorage.clear();
-    }
+  animateTitle(): void {
+    const tl = gsap.timeline({ repeat: -1 });
+    const animationSettings = {
+      duration: 30,
+      backgroundPosition: "-960px 0",
+    };
+    tl.to(".letter", animationSettings);
   }
-  private removeCookie(cookieName: string) {
-    this.cookieService.delete(cookieName);
-  }*/
 
 }
 

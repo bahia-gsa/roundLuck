@@ -3,7 +3,7 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 14.37rem;
 }
 
 .hidden {
@@ -36,15 +36,19 @@
   align-items: center;
   gap: 0.4rem;
   padding-left: 0.5rem;
+  mat-label{
+    color: rgb(173, 46, 116);
+    font-family: Unbounded, sans-serif;
+  }
   input{
     width: 90%;
   }
   button{
     background-color: transparent;
     border: none;
-    color: white;
+    color: rgb(173, 46, 116);
     font-size: 2.5rem;
-
+    font-weight: bold;
   }
 }
 
@@ -58,28 +62,32 @@
 
 .connection{
   padding: 0;
-  .buttons{
+  .access-container{
     display: flex;
+    flex-direction: row;
     align-items: center;
-    width: 100%;
-    gap: 1.5rem;
+    justify-content: center;
     button{
+      border: rgb(203, 32, 132) solid 1px;
+      min-width: 5rem;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
       font-family: Gluten, sans-serif;
-      font-size: 1.2rem;
-    }
-    button.login{
-      .icon-login{
-        color: #ffffff;
-        font-size: 1.8rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        width: 100%;
+      font-size: 1rem;
+      font-weight: normal;
+      gap: 0.5rem;
+      mat-icon{
+        color: rgb(203, 32, 132);
+        font-size: 1rem;
       }
     }
-
   }
+}
+
+button:hover {
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .menu{

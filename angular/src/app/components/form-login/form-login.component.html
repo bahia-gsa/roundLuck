@@ -1,27 +1,28 @@
-<form [formGroup]="logForm" class="form">
-  <h1>Login</h1>
-  <mat-form-field>
-    <mat-label>email</mat-label>
-    <input matInput placeholder="example@example.com" type="text" formControlName="email"/>
-    <mat-error *ngIf="logForm?.get('email')?.invalid && logForm?.get('email')?.touched">Invalid email format.</mat-error>
-  </mat-form-field>
+<div class="login-container">
+  <form [formGroup]="logForm" class="form">
+    <h1>Login</h1>
+    <mat-form-field>
+      <mat-label>email</mat-label>
+      <input matInput placeholder="example@example.com" type="text" formControlName="email"/>
+      <mat-error *ngIf="logForm?.get('email')?.invalid && logForm?.get('email')?.touched">Invalid email format.</mat-error>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>password</mat-label>
-    <input matInput placeholder="password" [type]="hide ? 'password' : 'text'" formControlName="password"/>
-    <mat-icon matSuffix (click)="hide = !hide">{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-    <mat-error *ngIf="logForm?.get('password')?.invalid && logForm?.get('password')?.touched"
-    >At least 8 characters including number, lower case, upper case, special character.
-    </mat-error>
-  </mat-form-field>
-
-  <div>
-    <mat-error *ngIf="error_401">Incorrect password or login.</mat-error>
-  </div>
-  <div class="option-wrapper">
-    <button mat-raised-button class="button-left" color="primary" (click)="loginRequest()">Login</button>
-  </div>
-  <div class="google-login">
+    <mat-form-field>
+      <mat-label>password</mat-label>
+      <input matInput placeholder="password" [type]="hide ? 'password' : 'text'" formControlName="password"/>
+      <mat-icon matSuffix (click)="hide = !hide">{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      <mat-error *ngIf="logForm?.get('password')?.invalid && logForm?.get('password')?.touched"
+      >At least 8 characters including number, lower case, upper case, special character.
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <mat-error *ngIf="error_401">Incorrect password or login.</mat-error>
+    </div>
+    <div class="option-wrapper">
+      <button mat-raised-button class="button-left" color="primary" (click)="loginRequest()">Login</button>
+    </div>
+  </form>
+  <div class="options">
     <div id="g_id_onload"
          data-client_id="921857157557-s9dm853cbgjvpqtnli8iu6t4sp5l1nrf.apps.googleusercontent.com"
          data-context="use"
@@ -37,10 +38,10 @@
          data-size="medium"
          data-logo_alignment="left">
     </div>
-  </div>
-  <div>
+    <mat-label class="register" (click)="openFormRegister()">Register</mat-label>
     <mat-label class="forgot-password" (click)="openPwdForgot()">Forgot password?</mat-label>
   </div>
-</form>
+</div>
+
 
 

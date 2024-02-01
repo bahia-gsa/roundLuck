@@ -1,0 +1,62 @@
+<div class="login-container">
+  <div class="form-container">
+    <p class="title">Login</p>
+  <form class="form" [formGroup]="form" (ngSubmit)="submitForm()">
+    <div class="input-group">
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" placeholder="" formControlName="email">
+      <div class="error" *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+        Email is required.
+      </div>
+      <div class="error"  *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+        Invalid email format.
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" placeholder="" formControlName="password">
+      <div class="error" *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+        Password is required.
+      </div>
+      <div class="forgot">
+        <a rel="noopener noreferrer" href="#">Forgot Password ?</a>
+      </div>
+    </div>
+    <button class="sign" [disabled]="form.invalid">Sign in</button>
+    <mat-error *ngIf="error_401">
+      Invalid email or password.
+    </mat-error>
+  </form>
+    <div class="social-message">
+      <div class="line"></div>
+      <p class="message">Login with social accounts</p>
+      <div class="line"></div>
+    </div>
+    <div class="social-icons">
+      <div id="g_id_onload"
+           data-client_id="921857157557-s9dm853cbgjvpqtnli8iu6t4sp5l1nrf.apps.googleusercontent.com"
+           data-context="use"
+           data-ux_mode="popup"
+           data-callback="handleCredentialResponse"
+           data-itp_support="true">
+      </div>
+      <div class="g_id_signin"
+           data-type="standard"
+           data-shape="pill"
+           data-theme="filled_blue"
+           data-text="continue_with"
+           data-size="medium"
+           data-logo_alignment="left">
+      </div>
+    </div>
+    <p class="signup">Don't have an account?
+      <a rel="noopener noreferrer" [routerLink]="['/register']" class="">Sign up</a>
+    </p>
+    <div class="icon">
+      <mat-icon [routerLink]="['']">home</mat-icon>
+    </div>
+  </div>
+</div>
+
+

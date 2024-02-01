@@ -50,19 +50,24 @@ export class ProfileComponent implements OnInit {
     this.editingEmail = false;
    }
 
+   changePicture() {
+    window.alert('This is not implemented yet')
+   }
+
     deleteProfile(userId?: number) {
-      if (userId) {
+      const isConfirmed = confirm('Are you sure you want to delete your profile?');
+      if (isConfirmed && userId) {
         this.auth.deleteUser(userId).subscribe({
           next: () => {
             sessionStorage.removeItem('loggedInUser');
             window.location.href = '/';
-          },
+            },
           error: () => {
             console.log('error');
           }
         });
       }
-     }
+    }
 
   setProfilePicture() {
     const loggedInUserString = sessionStorage.getItem('loggedInUser');

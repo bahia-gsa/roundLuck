@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit, Renderer2} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../../services/auth.service";
 import {CookieService} from "ngx-cookie-service";
@@ -106,6 +105,13 @@ export class FormLoginComponent implements OnInit {
       error: error => {
         console.log(error);
       }
+    })
+  }
+
+  openFormRegister() {
+    this.dialog.open(FormRegisterComponent, {
+      width: '100%',
+      height: '60%',
     })
   }
 

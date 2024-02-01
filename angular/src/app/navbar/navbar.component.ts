@@ -13,6 +13,7 @@ import {UserLogged} from "../model/UserLogged";
 import {DataService} from "../services/data.service";
 import {FormRegisterComponent} from "../components/form-register/form-register.component";
 import {AuthService} from "../services/auth.service";
+import {LoginFormComponent} from "../components/login-form/login-form.component";
 
 
 
@@ -49,15 +50,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*if(this.cookieService.check('login')) {
-      const userObject = JSON.parse(decodeURIComponent(this.cookieService.get('login')));
-      this.user = {
-        id: userObject.id,
-        name: userObject.name,
-        email: userObject.email
-      }
-      this.isConnected = true;
-    }*/
     if (sessionStorage.getItem('token')){
       const tokenValue = sessionStorage.getItem('token')!.slice(1, -1);
       this.loggingWithGoogle(tokenValue);
@@ -79,18 +71,14 @@ export class NavbarComponent implements OnInit {
     );
 
   openFormLogin() {
-    this.dialog.open(FormLoginComponent, {
+    //this.dialog.open(FormLoginComponent, {
+    /*this.dialog.open(LoginFormComponent, {
       width: '100%',
       height: '45%',
-    })
+    })*/
+    this.router.navigate(['/login']);
   }
 
-  openFormRegister() {
-    this.dialog.open(FormRegisterComponent, {
-      width: '100%',
-      height: '60%',
-    })
-  }
 
   logout() {
     this.cookieService.delete('qAuth');

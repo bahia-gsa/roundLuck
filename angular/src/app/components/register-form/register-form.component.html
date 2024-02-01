@@ -1,0 +1,47 @@
+<div class="register-container">
+  <div class="form-container">
+    <p class="title">Register form</p>
+    <form class="form" [formGroup]="form" (ngSubmit)="submitForm()">
+      <div class="input-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="" formControlName="name">
+        <div class="error" *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">
+          Name is required.
+        </div>
+        <div class="error" *ngIf="form.get('name')?.hasError('minlength') && form.get('name')?.touched">
+          Name must be at least 3 characters long.
+        </div>
+        <div class="error" *ngIf="form.get('name')?.hasError('maxlength') && form.get('name')?.touched">
+          Name must be at most 50 characters long.
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" placeholder="" formControlName="email">
+        <div class="error" *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+          Email is required.
+        </div>
+        <div class="error"  *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+          Invalid email format.
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="" formControlName="password">
+        <div class="error" *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+          Password is required.
+        </div>
+        <div class="error" *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched">
+         At least 6 characters long.
+        </div>
+        <div class="error" *ngIf="form.get('password')?.hasError('pattern') && form.get('password')?.touched">
+          At least one uppercase and lowercase letter, one number and one special character.
+        </div>
+      </div>
+      <button class="sign" [disabled]="form.invalid">Register</button>
+    </form>
+    <div class="icon">
+      <mat-icon [routerLink]="['']">home</mat-icon>
+    </div>
+  </div>
+</div>

@@ -28,6 +28,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import {NgOptimizedImage} from "@angular/common";
+import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { AndroidAppComponent } from './components/android-app/android-app.component';
 
 
 
@@ -45,6 +49,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
     AboutComponent,
     ContactComponent,
     ProfileComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
+    AndroidAppComponent,
 
   ],
     imports: [
@@ -63,7 +70,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
         MatInputModule,
         FormsModule,
         MatTableModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgOptimizedImage
     ],
   providers: [CookieService,
     {

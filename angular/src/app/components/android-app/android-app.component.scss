@@ -1,0 +1,23 @@
+.popup-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  p {
+    padding: 0;
+    font-size: 1.1rem;
+    margin: 0;
+    color: white;
+    text-align: center;
+    font-family: 'Unbounded', sans-serif;
+    a{
+      color: rgb(190, 17, 57);
+      font-weight: 400;
+      text-decoration: underline;
+    }
+  }
+}
+

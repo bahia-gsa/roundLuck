@@ -19,8 +19,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatTableModule} from "@angular/material/table";
 import { GameComponent } from './pages/game/game.component';
 import { SelectedGameComponent } from './pages/selected-game/selected-game.component';
-import { FormLoginComponent } from './components/form-login/form-login.component';
-import { FormRegisterComponent } from './components/form-register/form-register.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {CookieService} from 'ngx-cookie-service';
 import {Interceptor} from "./services/interceptor";
@@ -43,8 +41,6 @@ import { AndroidAppComponent } from './components/android-app/android-app.compon
     IndexComponent,
     GameComponent,
     SelectedGameComponent,
-    FormLoginComponent,
-    FormRegisterComponent,
     FooterComponent,
     AboutComponent,
     ContactComponent,

@@ -6,14 +6,10 @@ import {Game} from "../model/Game";
 import {User} from "../model/User";
 import {Router} from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import {FormLoginComponent} from "../components/form-login/form-login.component";
 import {CookieService} from "ngx-cookie-service";
 import {UserLogged} from "../model/UserLogged";
 import {DataService} from "../services/data.service";
-import {FormRegisterComponent} from "../components/form-register/form-register.component";
 import {AuthService} from "../services/auth.service";
-import {LoginFormComponent} from "../components/login-form/login-form.component";
 
 
 
@@ -38,7 +34,6 @@ export class NavbarComponent implements OnInit {
               private cookieService: CookieService,
               private dataService: DataService,
               private router: Router,
-              private dialog: MatDialog,
               private formBuilder: FormBuilder,
               private authService: AuthService) {
     this.form = this.formBuilder.group({
@@ -60,6 +55,9 @@ export class NavbarComponent implements OnInit {
       if (user) {
         this.user = user;
         this.isConnected = true;
+        this.getGamesByUser();
+        console.log(this.user);
+
       }
     });
   }
@@ -71,11 +69,6 @@ export class NavbarComponent implements OnInit {
     );
 
   openFormLogin() {
-    //this.dialog.open(FormLoginComponent, {
-    /*this.dialog.open(LoginFormComponent, {
-      width: '100%',
-      height: '45%',
-    })*/
     this.router.navigate(['/login']);
   }
 
@@ -83,6 +76,8 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.cookieService.delete('qAuth');
     this.cookieService.delete('login');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('loggedInUser');
     this.isConnected = false;
     this.router.navigate(['']);
   }
@@ -96,6 +91,12 @@ export class NavbarComponent implements OnInit {
           error: error => {
           }
         });
+  }
+
+  checkForGames() {
+    if (this.games.length === 0) {
+      this.getGamesByUser();
+    }
   }
 
   openGame(gameId: number) {
@@ -179,12 +180,12 @@ export class NavbarComponent implements OnInit {
     })
 }
 
-setProfilePicture() {
-  const loggedInUserString = sessionStorage.getItem('loggedInUser');
-  if (loggedInUserString !== null) {
-    const loggedInUser = JSON.parse(loggedInUserString);
-    this.picture = loggedInUser.picture;
-  }
+  setProfilePicture() {
+    const loggedInUserString = sessionStorage.getItem('loggedInUser');
+    if (loggedInUserString !== null) {
+      const loggedInUser = JSON.parse(loggedInUserString);
+      this.picture = loggedInUser.picture;
+    }
 }
 
 

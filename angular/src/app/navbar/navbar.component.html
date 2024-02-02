@@ -41,7 +41,7 @@
                 aria-label="Toggle sidenav"
                 mat-icon-button
                 (click)="drawer.toggle()"
-                (click)="getGamesByUser()"
+                (click)="checkForGames()"
                 *ngIf="isSmallScreen$ | async">
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
               </button>

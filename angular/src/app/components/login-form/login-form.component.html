@@ -1,5 +1,8 @@
 <div class="login-container">
-  <div class="form-container">
+  <div class="loader" *ngIf="loading">
+    <div data-glitch="Loading..." class="glitch">Loading...</div>
+  </div>
+  <div *ngIf="!loading" class="form-container">
     <p class="title">Login</p>
   <form class="form" [formGroup]="form" (ngSubmit)="submitForm()">
     <div class="input-group">

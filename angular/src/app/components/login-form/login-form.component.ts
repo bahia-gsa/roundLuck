@@ -5,7 +5,6 @@ import {Router} from "@angular/router";
 import {UserLogged} from "../../model/UserLogged";
 import {AuthService} from "../../services/auth.service";
 import {CookieService} from "ngx-cookie-service";
-import {MatDialog} from "@angular/material/dialog";
 import {DataService} from "../../services/data.service";
 import {QuarkusService} from "../../services/quarkus.service";
 import {gsap} from "gsap";
@@ -20,6 +19,7 @@ export class LoginFormComponent implements OnInit {
   form: FormGroup;
   userLogged!: UserLogged;
   error_401 = false;
+  loading = false;
 
   constructor(private renderer: Renderer2,
               private formBuilder: FormBuilder,
@@ -46,7 +46,6 @@ export class LoginFormComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.animateTitle();
     const script = this.renderer.createElement('script');
     script.src = 'https://accounts.google.com/gsi/client';
     script.async = true;
@@ -56,6 +55,12 @@ export class LoginFormComponent implements OnInit {
 
     script.onload = () => {
     };
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.animateTitle();
+    });
   }
 
   animateTitle(): void {
@@ -68,6 +73,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   submitForm(): void {
+    this.loading = true;
     if (this.form.valid) {
       const formData = this.form.value;
       const credentials = {email: formData.email, password: formData.password };
@@ -83,13 +89,17 @@ export class LoginFormComponent implements OnInit {
             name: data.name,
             email: data.email,
           });
-          this.router.navigate(['']);
+          this.router.navigate([''])
+            .finally(() => {
+              this.loading = false; // Set loading to false after navigation is complete
+            });
         },
         error: ( HttpErrorResponse ) => {
           console.log("Error API back: <-------", HttpErrorResponse);
           if ( HttpErrorResponse.status == 401 ) {
             this.error_401 = true;
           }
+          this.loading = false;
         },
       });
     }

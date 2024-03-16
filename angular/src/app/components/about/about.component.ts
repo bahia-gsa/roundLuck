@@ -34,7 +34,7 @@ export class AboutComponent implements OnInit {
   }
 
   navigateToGitHub() {
-    window.open('https://github.com/bahia-gsa/project-draw', '_blank');
+    window.open('https://github.com/bahia-gsa/roundLuck', '_blank');
   }
 
   navigateToLinkedIn() {
